@@ -48,26 +48,48 @@ public class LinkedList {
         curr.next=curr.next.next;
         return head;
     }
-    public void reorderList(ListNode head) {
-        if(head==null) return ;
 
-        ListNode ptr1=head;
-        ListNode ptr2=reverseList(head);
+    //problem
+    public void reorderList(ListNode head ) {
+      ListNode ptr1=head;
+      int size=size(head);
+      ListNode ptr2=reverseList(head);
+      ListNode curr=ptr2;
+      for (int i=0;i<(size/2)-1;i++)
+          curr=curr.next;
+      curr.next=null;
+      ListNode ptr=null;
+      while (ptr2!=null){
+          ptr=addnode(ptr,ptr1.val);
+          ptr1=ptr1.next;
+          ptr=addnode(ptr,ptr2.val);
+          ptr2=ptr2.next;
+      }
+      if(size%2!=0) ptr=addnode(ptr,ptr1.val);
 
-        ListNode curr=ptr1;
-        curr.next=null;
+      head=new ListNode(ptr.val);
+      ptr=ptr.next;
+      while (ptr!=null){
+          ListNode temp=head;
+          while (temp.next!=null) {
+              temp=temp.next;
+          }
+          temp.next=new ListNode(ptr.val);
+          ptr=ptr.next;
+      }
+    }
 
-        while (ptr1.val!=ptr2.val){
-            ptr1=ptr1.next;
-            curr=addnode(curr,ptr2.val);
-            ptr2=ptr2.next;
-            if(ptr1!=null)
-                curr=addnode(curr,ptr1.val);
+    private int size(ListNode head){
+        ListNode curr=head;
+        int size=0;
+        while (curr!=null){
+            size++;
+            curr=curr.next;
         }
-
-        head=curr;
+        return size;
     }
     private ListNode addnode(ListNode head,int data){
+        if(head==null) return new ListNode(data);
         ListNode node=head;
         while (node.next!=null)
             node=node.next;

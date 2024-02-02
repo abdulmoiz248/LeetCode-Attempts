@@ -128,7 +128,7 @@ public class Solution {
     }
 
 
-    public static boolean isAnagram(String s, String t) {
+    public  boolean isAnagram(String s, String t) {
         if(s.length()!=t.length()) return false;
         HashMap<Character,Integer> map=new HashMap<>();
         for(int i=0;i<s.length();i++){
@@ -148,4 +148,23 @@ public class Solution {
         }
         return true;
     }
+   /* wrong 1,2,1
+   public  int maxArea(int[] height){
+        int area=0;
+        int max_index=find_max(height);
+        for (int i=0;i<height.length;i++){
+            int width=Math.abs(max_index-i);
+            if(area<width*height[i]) area=width*height[i];
+        }
+        return area;
+    }
+    private int find_max(int[] height){
+        int max=0;
+        for (int i=0;i<height.length;i++){
+           if(height[max]<height[i]) max=i;
+        }
+        return max;
+    }*/
+
+
 }
