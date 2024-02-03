@@ -216,7 +216,7 @@ public class Solution {
       for (int grid=0;grid<9;grid++){
 
       }
-
+return true;
     }
     private boolean verify_grid(int rows,int cols,int rowe,int cole,char[][] board){
         for(int row=rows;row<rowe;row++){
