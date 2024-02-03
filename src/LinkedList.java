@@ -49,35 +49,7 @@ public class LinkedList {
         return head;
     }
 
-    //problem
-    public void reorderList(ListNode head ) {
-      ListNode ptr1=head;
-      int size=size(head);
-      ListNode ptr2=reverseList(head);
-      ListNode curr=ptr2;
-      for (int i=0;i<(size/2)-1;i++)
-          curr=curr.next;
-      curr.next=null;
-      ListNode ptr=null;
-      while (ptr2!=null){
-          ptr=addnode(ptr,ptr1.val);
-          ptr1=ptr1.next;
-          ptr=addnode(ptr,ptr2.val);
-          ptr2=ptr2.next;
-      }
-      if(size%2!=0) ptr=addnode(ptr,ptr1.val);
 
-      head=new ListNode(ptr.val);
-      ptr=ptr.next;
-      while (ptr!=null){
-          ListNode temp=head;
-          while (temp.next!=null) {
-              temp=temp.next;
-          }
-          temp.next=new ListNode(ptr.val);
-          ptr=ptr.next;
-      }
-    }
 
     private int size(ListNode head){
         ListNode curr=head;

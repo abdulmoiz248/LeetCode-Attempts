@@ -148,6 +148,90 @@ public class Solution {
         }
         return true;
     }
+
+    public int longestConsecutive(int[] nums) { //time limit issue
+        if(nums.length==0 ) return 0;
+        if(nums.length==1) return 1;
+        int min=find_min(nums);
+        int length=0;
+        HashSet<Integer> set=new HashSet<>();
+
+        for(int i=0;i<nums.length;i++){
+            set.add(nums[i]);
+        }
+
+        while (!set.isEmpty()){
+            if(!(set.contains(min))){
+                Iterator<Integer> iterator=set.iterator();
+                int arr[]=new int[set.size()];
+                int i=0;
+                while (iterator.hasNext()){
+                    arr[i]=iterator.next();
+                    i++;
+                }
+                int l2= longestConsecutive(arr);
+                if(l2<length) return length;
+                return l2;
+            }else{
+                set.remove(min);
+                min++;
+                length++;
+            }
+        }
+        return length;
+    }
+    private int find_min(int[] nums){
+        int min=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(min>nums[i]) min=nums[i];
+        }
+        return min;
+    }
+    public boolean isValidSudoku(char[][] board) {
+
+     //checking row
+       for(int row=0;row<9;row++){
+           HashSet<Character> rows=new HashSet<>();
+           for(int col=0;col<9;col++){
+               char temp=board[row][col];
+               if(temp!='.'){
+                 if(rows.contains(temp)) return false;
+                 rows.add(temp);
+               }
+           }
+       }
+//checking col
+        for(int col=0;col<9;col++) {
+            HashSet<Character> cols=new HashSet<>();
+            for(int row=0;row<9;row++){
+                char temp=board[row][col];
+                if(temp!='.'){
+                    if(cols.contains(temp)) return false;
+                    cols.add(temp);
+                }
+            }
+        }
+//checking grid
+
+      for (int grid=0;grid<9;grid++){
+
+      }
+
+    }
+    private boolean verify_grid(int rows,int cols,int rowe,int cole,char[][] board){
+        for(int row=rows;row<rowe;row++){
+            HashSet<Character> rowset=new HashSet<>();
+            for(int col=cols;col<cole;col++){
+                char temp=board[row][col];
+                if(temp!='.'){
+                    if(rowset.contains(temp)) return false;
+                    rowset.add(temp);
+                }
+            }
+        }
+        return true;
+    }
+
    /* wrong 1,2,1
    public  int maxArea(int[] height){
         int area=0;
