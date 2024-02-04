@@ -3,16 +3,38 @@ import org.w3c.dom.NodeList;
 public class Main {
     public static void main(String[] args) {
         Solution solution=new Solution();
-        System.out.println(solution.longestConsecutive(new int[]{100,4,200,1,3,2}));
+   /*  //   System.out.println(solution.longestConsecutive(new int[]{100,4,200,1,3,2}));
+        char[][] board = new char[9][9];
+        String[][] inputArray = {
+                {"5", "3", ".", ".", "7", ".", ".", ".", "."},
+                {"6", ".", ".", "1", "9", "5", ".", ".", "."},
+                {".", "9", "8", ".", ".", ".", ".", "6", "."},
+                {"8", ".", ".", ".", "6", ".", ".", ".", "3"},
+                {"4", ".", ".", "8", ".", "3", ".", ".", "1"},
+                {"7", ".", ".", ".", "2", ".", ".", ".", "6"},
+                {".", "6", ".", ".", ".", ".", "2", "8", "."},
+                {".", ".", ".", "4", "1", "9", ".", ".", "5"},
+                {".", ".", ".", ".", "8", ".", ".", "7", "9"}
+        };
 
-        /*LinkedList list=new LinkedList();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = inputArray[i][j].charAt(0); // Assuming input is always a single character or a dot
+            }
+        }
+
+        System.out.println(solution.isValidSudoku(board));*/
+       /* LinkedList list=new LinkedList();
         LinkedList.ListNode l=null;
         l=  list.insert(5,l);
         l=  list.insert(4,l);
         l=  list.insert(3,l);
         l=  list.insert(2,l);
         l=  list.insert(1,l);
+        list.reorderList(l);
         list.print(l);*/
+
+        System.out.println(solution.maxProfit(new int[]{7,1,5,3,6,4}));
 
     }
 }

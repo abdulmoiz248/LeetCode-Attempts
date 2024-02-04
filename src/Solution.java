@@ -200,6 +200,7 @@ public class Solution {
                }
            }
        }
+        System.out.println("row");
 //checking col
         for(int col=0;col<9;col++) {
             HashSet<Character> cols=new HashSet<>();
@@ -211,26 +212,25 @@ public class Solution {
                 }
             }
         }
+        System.out.println("col");
 //checking grid
 
-      for (int grid=0;grid<9;grid++){
-
-      }
 return true;
     }
-    private boolean verify_grid(int rows,int cols,int rowe,int cole,char[][] board){
-        for(int row=rows;row<rowe;row++){
-            HashSet<Character> rowset=new HashSet<>();
-            for(int col=cols;col<cole;col++){
-                char temp=board[row][col];
-                if(temp!='.'){
-                    if(rowset.contains(temp)) return false;
-                    rowset.add(temp);
-                }
-            }
+    private boolean verify_grid(int rowstart,int rowend,int colstart,int colend,char[][] board){
+        HashSet<Character> grid=new HashSet<>();
+        for(int i=rowstart;i<rowend;i++){
+          for(int j=0;j<colend;j++){
+              char temp=board[i][j];
+              if(temp!='.'){
+                  if(grid.contains(temp)) return false;
+                  grid.add(temp);
+              }
+          }
         }
         return true;
     }
+
 
    /* wrong 1,2,1
    public  int maxArea(int[] height){
@@ -250,5 +250,37 @@ return true;
         return max;
     }*/
 
+    public int maxArea(int[] height) { //runtime long
+       int max=0;
+       for(int i=0;i<height.length;i++){
+           for(int j=0;j<height.length;j++){
+               int width=Math.abs(j-i);
+               int index=0;
+             if(height[i]<height[j]) index=i;
+             else index=j;
+               if(max<height[index]*width) {
+                   max = height[index] * width;
+
+               }
+
+           }
+       }
+       return max;
+    }
+    public int maxProfit(int[] prices) {
+       int purchaseday=0;
+       int profit=0;
+       for(int sellingday=1;sellingday<prices.length;sellingday++){
+           if(profit<prices[sellingday]-prices[purchaseday]){
+               System.out.println(prices[sellingday]);
+               System.out.println(prices[purchaseday]);
+               System.out.println();
+               profit=prices[sellingday]-prices[purchaseday];
+           }else {
+               purchaseday=sellingday;
+           }
+       }
+return profit;
+    }
 
 }

@@ -95,6 +95,7 @@ public class LinkedList {
         return head;
     }
     public ListNode reverseList(ListNode head) {
+
         Stack<Integer> stack=new Stack<>();
         ListNode curr=head;
         while (curr!=null){
@@ -170,6 +171,41 @@ public class LinkedList {
                 list2=list2.next;
             }
         return head;
+    }
+    public void reorderList(ListNode head) {
+        if(head==null) return;
+        if(head.next==null) return;
+         ListNode ptr1=head;
+         int size=size(head);
+         ListNode ptr2=assignptr(head);
+
+         while (true){
+             ListNode newnode=new ListNode(ptr2.val);
+             newnode.next=ptr1.next;
+             ptr1.next=newnode;
+             ptr1=ptr1.next.next;
+             ptr2=ptr2.next;
+             if(ptr2==null){
+                 ptr1.next=null;
+                 break;
+             }
+         }
+       if(size%2==0) {
+            ListNode temp = head;
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+            temp.next = null;
+        }
+    }
+    private ListNode assignptr(ListNode head){
+        ListNode ptr=reverseList(head);
+        int size=size(head)/2;
+        ListNode curr=ptr;
+        for(int i=0;i<size-1;i++)
+            curr=curr.next;
+        curr.next=null;
+        return ptr;
     }
 }
 
