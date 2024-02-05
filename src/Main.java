@@ -34,7 +34,7 @@ public class Main {
         list.reorderList(l);
         list.print(l);*/
 
-        System.out.println(solution.maxProfit(new int[]{7,1,5,3,6,4}));
-
+       // System.out.println(solution.maxProfit(new int[]{7,1,5,3,6,4}));
+        System.out.println(solution.longestConsecutive(new int[]{-7,2,-3,8,9,0,8,4,-5,8,-5,-5,1,6,4}));
     }
 }

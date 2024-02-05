@@ -149,7 +149,42 @@ public class Solution {
         return true;
     }
 
-    public int longestConsecutive(int[] nums) { //time limit issue
+    public int longestConsecutive(int[] nums){
+        if(nums.length==0) return 0;
+        if(nums.length==1) return 1;
+        //HashSet<Integer> set=new HashSet<>();
+        TreeSet<Integer> set=new TreeSet<>();
+       for(int i:nums) set.add(i);
+        System.out.println();
+        int length=1;
+        int tempint=0;
+        int curr=set.iterator().next();
+        set.remove(curr);
+        while (!set.isEmpty()){
+            int temp=set.first();
+            set.remove(temp);
+            if(temp==curr+1){
+                set.remove(curr);
+                if(set.contains(curr)) {
+                    length++;
+                    set.remove(curr);
+                }
+                curr=temp;
+                length++;
+
+            }else {
+                if(set.size()<length) {
+                  return Math.max(tempint,length);
+                }
+                tempint=Math.max(tempint,length);
+                length=1;
+                curr=temp;
+            }
+        }
+        return  length;
+    }
+
+  /*  public int longestConsecutive(int[] nums) { //time limit issue
         if(nums.length==0 ) return 0;
         if(nums.length==1) return 1;
         int min=find_min(nums);
@@ -162,16 +197,14 @@ public class Solution {
 
         while (!set.isEmpty()){
             if(!(set.contains(min))){
-                Iterator<Integer> iterator=set.iterator();
-                int arr[]=new int[set.size()];
-                int i=0;
-                while (iterator.hasNext()){
-                    arr[i]=iterator.next();
-                    i++;
+               if(set.size()> length)
+               {
+                   int[] arr= set.stream().mapToInt(Integer::intValue).toArray();
+                    int l2 = longestConsecutive(arr);
+                    if (l2 < length) return length;
+                    return l2;
                 }
-                int l2= longestConsecutive(arr);
-                if(l2<length) return length;
-                return l2;
+               return length;
             }else{
                 set.remove(min);
                 min++;
@@ -179,7 +212,7 @@ public class Solution {
             }
         }
         return length;
-    }
+    }*/
     private int find_min(int[] nums){
         int min=nums[0];
         for(int i=1;i<nums.length;i++){
@@ -200,7 +233,7 @@ public class Solution {
                }
            }
        }
-        System.out.println("row");
+
 //checking col
         for(int col=0;col<9;col++) {
             HashSet<Character> cols=new HashSet<>();
@@ -212,7 +245,7 @@ public class Solution {
                 }
             }
         }
-        System.out.println("col");
+
 //checking grid
 
 return true;
@@ -220,7 +253,7 @@ return true;
     private boolean verify_grid(int rowstart,int rowend,int colstart,int colend,char[][] board){
         HashSet<Character> grid=new HashSet<>();
         for(int i=rowstart;i<rowend;i++){
-          for(int j=0;j<colend;j++){
+          for(int j=colstart;j<colend;j++){
               char temp=board[i][j];
               if(temp!='.'){
                   if(grid.contains(temp)) return false;
@@ -267,7 +300,7 @@ return true;
        }
        return max;
     }
-    public int maxProfit(int[] prices) {
+   /* public int maxProfit(int[] prices) {
        int purchaseday=0;
        int profit=0;
        for(int sellingday=1;sellingday<prices.length;sellingday++){
@@ -281,6 +314,6 @@ return true;
            }
        }
 return profit;
-    }
+    }*/
 
 }
