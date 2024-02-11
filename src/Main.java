@@ -24,17 +24,28 @@ public class Main {
         }
 
         System.out.println(solution.isValidSudoku(board));*/
-       /* LinkedList list=new LinkedList();
+     /*   LinkedList list=new LinkedList();
         LinkedList.ListNode l=null;
-        l=  list.insert(5,l);
-        l=  list.insert(4,l);
+        LinkedList.ListNode l1=null;
         l=  list.insert(3,l);
+        l=  list.insert(4,l);
         l=  list.insert(2,l);
-        l=  list.insert(1,l);
-        list.reorderList(l);
+
+        l1=  list.insert(4,l);
+        l1=  list.insert(6,l);
+        l1=  list.insert(5,l);
         list.print(l);*/
 
        // System.out.println(solution.maxProfit(new int[]{7,1,5,3,6,4}));
-        System.out.println(solution.longestConsecutive(new int[]{-7,2,-3,8,9,0,8,4,-5,8,-5,-5,1,6,4}));
+       // System.out.println(solution.longestConsecutive(new int[]{-7,2,-3,8,9,0,8,4,-5,8,-5,-5,1,6,4}));
+      //  System.out.println(solution.maxArea(new  int []{1,8,6,2,5,4,8,3,7}));
+
+        int[][] array2D = new int[][]{
+                {1, 3, 5, 7},
+                {10, 11, 16, 20},
+                {23, 30, 34, 50}
+        };
+
+        System.out.println(solution.searchMatrix(array2D,30));
     }
 }

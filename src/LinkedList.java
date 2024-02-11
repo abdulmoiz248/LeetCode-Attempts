@@ -4,6 +4,7 @@ import java.util.Stack;
 
 public class LinkedList {
 
+
     public int findDuplicate(int[] nums) {
         HashSet<Integer> set=new HashSet<>();
         for(int i=0;i<nums.length;i++){
@@ -23,9 +24,7 @@ public class LinkedList {
         }
         return false;
     }
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
-    }
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if(head==null) return null;
         int size=0;
@@ -37,7 +36,7 @@ public class LinkedList {
 
         if(size==1) return null;
 
-        curr=head;
+        curr= head;
 
         if(size-n==0) {
             curr = curr.next;

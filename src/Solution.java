@@ -213,6 +213,7 @@ public class Solution {
         }
         return length;
     }*/
+
     private int find_min(int[] nums){
         int min=nums[0];
         for(int i=1;i<nums.length;i++){
@@ -222,18 +223,17 @@ public class Solution {
     }
     public boolean isValidSudoku(char[][] board) {
 
-     //checking row
-       for(int row=0;row<9;row++){
-           HashSet<Character> rows=new HashSet<>();
-           for(int col=0;col<9;col++){
-               char temp=board[row][col];
-               if(temp!='.'){
-                 if(rows.contains(temp)) return false;
-                 rows.add(temp);
-               }
-           }
-       }
-
+        //checking row
+        for(int row=0;row<9;row++){
+            HashSet<Character> rows=new HashSet<>();
+            for(int col=0;col<9;col++){
+                char temp=board[row][col];
+                if(temp!='.'){
+                    if(rows.contains(temp)) return false;
+                    rows.add(temp);
+                }
+            }
+        }
 //checking col
         for(int col=0;col<9;col++) {
             HashSet<Character> cols=new HashSet<>();
@@ -245,75 +245,91 @@ public class Solution {
                 }
             }
         }
-
 //checking grid
+        if(!(verify_grid(0,3,0,3,board) ))
+            return false;
+        if(!(verify_grid(0,3,3,6,board) ))
+            return false;
+        if(!(verify_grid(0,3,6,9,board) ))
+            return false;
 
-return true;
+        if(!(verify_grid(3,6,0,3,board) ))
+            return false;
+        if(!(verify_grid(3,6,3,6,board) ))
+            return false;
+        if(!(verify_grid(3,6,6,9,board) ))
+            return false;
+
+        if(!(verify_grid(6,9,0,3,board) ))
+            return false;
+        if(!(verify_grid(6,9,3,6,board) ))
+            return false;
+        if(!(verify_grid(6,9,6,9,board) ))
+            return false;
+        return true;
     }
     private boolean verify_grid(int rowstart,int rowend,int colstart,int colend,char[][] board){
         HashSet<Character> grid=new HashSet<>();
         for(int i=rowstart;i<rowend;i++){
-          for(int j=colstart;j<colend;j++){
-              char temp=board[i][j];
-              if(temp!='.'){
-                  if(grid.contains(temp)) return false;
-                  grid.add(temp);
-              }
-          }
+            for(int j=colstart;j<colend;j++){
+                char temp=board[i][j];
+                if(temp!='.'){
+                    if(grid.contains(temp)) return false;
+                    grid.add(temp);
+                }
+            }
         }
         return true;
     }
-
-
-   /* wrong 1,2,1
-   public  int maxArea(int[] height){
-        int area=0;
-        int max_index=find_max(height);
-        for (int i=0;i<height.length;i++){
-            int width=Math.abs(max_index-i);
-            if(area<width*height[i]) area=width*height[i];
+    public int search(int[] nums, int target) {
+        int index=(nums.length-1)/2;
+        if(nums[index]==target) return index;
+        else if(nums[index]>target) {
+             for(int i=0;i<index;i++){
+                 if(nums[i]==target) return i;
+             }
+        }else {
+            for (int i=index+1;i<nums.length;i++){
+                if(nums[i]==target) return i;
+            }
         }
-        return area;
+        return -1;
     }
-    private int find_max(int[] height){
-        int max=0;
-        for (int i=0;i<height.length;i++){
-           if(height[max]<height[i]) max=i;
+
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int index=matrix.length;
+        for (int i=1;i<matrix.length;i++){
+            if(matrix[i][0]>target) {
+                index = i-1;
+                break;
+            }
         }
-        return max;
-    }*/
-
-    public int maxArea(int[] height) { //runtime long
-       int max=0;
-       for(int i=0;i<height.length;i++){
-           for(int j=0;j<height.length;j++){
-               int width=Math.abs(j-i);
-               int index=0;
-             if(height[i]<height[j]) index=i;
-             else index=j;
-               if(max<height[index]*width) {
-                   max = height[index] * width;
-
-               }
-
-           }
-       }
-       return max;
+        System.out.println(index);
+      for (int i=0;i<matrix[1].length;i++){
+          if(matrix[index][i]==target) return true;
+      }
+      return false;
     }
-   /* public int maxProfit(int[] prices) {
-       int purchaseday=0;
-       int profit=0;
-       for(int sellingday=1;sellingday<prices.length;sellingday++){
-           if(profit<prices[sellingday]-prices[purchaseday]){
-               System.out.println(prices[sellingday]);
-               System.out.println(prices[purchaseday]);
-               System.out.println();
-               profit=prices[sellingday]-prices[purchaseday];
-           }else {
-               purchaseday=sellingday;
-           }
-       }
-return profit;
-    }*/
+    public static List<List<Integer>> threeSum(int[] nums){ //tome limit
+         Arrays.sort(nums);
+         List<List<Integer>> lists=new ArrayList<>();
+         for (int i=0;i<nums.length-2;i++){
+             int j=i+1;
+             int k= nums.length-1;
+             while (k>j)
+             {
+                 if(nums[i]+nums[k]+nums[j]==0){
+                     List<Integer> l=new ArrayList<>();
+                     l.add(nums[i]);
+                     l.add(nums[j]);
+                     l.add(nums[k]);
+                     if(!lists.contains(l)) lists.add(l);
+                 }else if (nums[i]+nums[k]+nums[j]>0){
+                     k--;
+                 }else j++;
+             }
+         }
+         return lists;
+    }
 
 }
