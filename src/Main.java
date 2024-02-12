@@ -40,12 +40,6 @@ public class Main {
        // System.out.println(solution.longestConsecutive(new int[]{-7,2,-3,8,9,0,8,4,-5,8,-5,-5,1,6,4}));
       //  System.out.println(solution.maxArea(new  int []{1,8,6,2,5,4,8,3,7}));
 
-        int[][] array2D = new int[][]{
-                {1, 3, 5, 7},
-                {10, 11, 16, 20},
-                {23, 30, 34, 50}
-        };
-
-        System.out.println(solution.searchMatrix(array2D,30));
+       // System.out.println(solution.minWindow("ADOBECODEBANC","ABC"));
     }
 }

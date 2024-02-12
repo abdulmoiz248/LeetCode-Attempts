@@ -149,70 +149,61 @@ public class Solution {
         return true;
     }
 
-    public int longestConsecutive(int[] nums){
-        if(nums.length==0) return 0;
-        if(nums.length==1) return 1;
-        //HashSet<Integer> set=new HashSet<>();
-        TreeSet<Integer> set=new TreeSet<>();
-       for(int i:nums) set.add(i);
-        System.out.println();
-        int length=1;
-        int tempint=0;
-        int curr=set.iterator().next();
-        set.remove(curr);
-        while (!set.isEmpty()){
-            int temp=set.first();
-            set.remove(temp);
-            if(temp==curr+1){
-                set.remove(curr);
-                if(set.contains(curr)) {
-                    length++;
-                    set.remove(curr);
-                }
-                curr=temp;
-                length++;
+    public int lengthOfLongestSubstring(String s) {
+       if(s==null || s.equals("")) return 0;
+       if(s.equals(" ") || s.length()==1) return 1;
 
-            }else {
-                if(set.size()<length) {
-                  return Math.max(tempint,length);
-                }
-                tempint=Math.max(tempint,length);
+       int length=0;
+       int final_length=0;
+       HashSet<Character> set=new HashSet<>();
+
+       for (int i=0;i<s.length();i++){
+           if(set.contains(s.charAt(i))){
+                set=new HashSet<>();
+
+                final_length=Math.max(final_length,length);
                 length=1;
-                curr=temp;
-            }
-        }
-        return  length;
+
+                for (int j=i-1;j>=0;j--){
+                    if(s.charAt(i)==s.charAt(j)) {
+                        i=j+1;
+                        break;
+                    }
+                }
+                set.add(s.charAt(i));
+           }else {
+               set.add(s.charAt(i));
+               length++;
+           }
+       }
+        System.out.println();
+       return Math.max(final_length,length);
     }
 
-  /*  public int longestConsecutive(int[] nums) { //time limit issue
-        if(nums.length==0 ) return 0;
+
+    public int longestConsecutive(int[] nums){
+
+        if(nums.length==0) return 0;
         if(nums.length==1) return 1;
-        int min=find_min(nums);
-        int length=0;
-        HashSet<Integer> set=new HashSet<>();
 
-        for(int i=0;i<nums.length;i++){
-            set.add(nums[i]);
-        }
+        Arrays.sort(nums);
 
-        while (!set.isEmpty()){
-            if(!(set.contains(min))){
-               if(set.size()> length)
-               {
-                   int[] arr= set.stream().mapToInt(Integer::intValue).toArray();
-                    int l2 = longestConsecutive(arr);
-                    if (l2 < length) return length;
-                    return l2;
+        int ptr=nums[0];
+        int length=1;
+        int final_length=0;
+        for (int i=1;i<nums.length;i++){
+            if(ptr!=nums[i]){
+                if(ptr+1==nums[i]){
+                    length++;
+                }else {
+                    final_length=Math.max(final_length,length);
+                     length=1;
                 }
-               return length;
-            }else{
-                set.remove(min);
-                min++;
-                length++;
             }
+            ptr=nums[i];
         }
-        return length;
-    }*/
+        return Math.max(final_length,length);
+    }
 
     private int find_min(int[] nums){
         int min=nums[0];
@@ -331,5 +322,4 @@ public class Solution {
          }
          return lists;
     }
-
 }
