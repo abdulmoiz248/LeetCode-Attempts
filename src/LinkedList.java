@@ -206,6 +206,7 @@ public class LinkedList {
         curr.next=null;
         return ptr;
     }
+
     public ListNode middleNode(ListNode head) {
         if(head==null) return null;
         int size=size(head);
