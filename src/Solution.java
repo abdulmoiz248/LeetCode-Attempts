@@ -329,4 +329,28 @@ public class Solution {
       }else  return hammingWeight(n/2)+1;
     }
 
+    public int[] plusOne(int[] digits) {
+       if(digits.length==0) return null;
+       int index=digits.length-1;
+       return checkcondition(digits,index);
+    }
+    private int[] checkcondition(int[] digits,int index){
+        if(index==-1){
+            int[] arr=new int[digits.length+1];
+            arr[0]=1;
+            for (int i=1;i<arr.length;i++){
+                arr[i]=0;
+
+            }
+            for (int i=0;i<arr.length;i++) System.out.println(arr[i]);
+            return arr;
+        }
+        if(digits[index]==9){
+            digits[index]=0;
+           return checkcondition(digits,index-1);
+        }else{
+            digits[index]+=1;
+        }
+        return digits;
+    }
 }
