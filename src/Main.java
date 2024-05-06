@@ -41,7 +41,9 @@ public class Main {
       //  System.out.println(solution.maxArea(new  int []{1,8,6,2,5,4,8,3,7}));
 
        // System.out.println(solution.minWindow("ADOBECODEBANC","ABC"));
-        int arr[]=solution.plusOne(new int[]{9});
-        for (int i=1;i<arr.length;i++) System.out.println(arr[i]);
+        int arr[]=new int[]{4,5,5};
+        int x=solution.removeElement(arr,5);
+        for(int i=0;i<x;i++)
+            System.out.println(arr[i]);
     }
 }
