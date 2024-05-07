@@ -41,9 +41,14 @@ public class Main {
       //  System.out.println(solution.maxArea(new  int []{1,8,6,2,5,4,8,3,7}));
 
        // System.out.println(solution.minWindow("ADOBECODEBANC","ABC"));
-        int arr[]=new int[]{4,5,5};
-        int x=solution.removeElement(arr,5);
-        for(int i=0;i<x;i++)
-            System.out.println(arr[i]);
+        LinkedList list=new LinkedList();
+        LinkedList.ListNode l=null;
+        l=  list.insert(9,l);
+        l=  list.insert(8,l);
+        l=  list.insert(1,l);
+        list.print(l);
+        list.doubleIt(l);
+        System.out.println("After");
+        list.print(l);
     }
 }

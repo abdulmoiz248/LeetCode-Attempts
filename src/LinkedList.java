@@ -220,6 +220,60 @@ public class LinkedList {
             return head;
         }
     }
+    public ListNode removeNodes(ListNode head) {
+        if(head==null) return null;
+        if(head.next==null ) return null;
+
+      //  ListNode ptr=head;
+        ListNode left=head;
+        ListNode right=head.next;
+        ListNode headhead=null;
+
+        while (right!=null){
+
+            if(left.val< right.val)
+            {
+               add_node(headhead,right);
+            }else {
+                add_node(headhead,left);
+            }
+           right=right.next;
+           left=left.next;
+        }
+
+        return headhead;
+    }
+    private ListNode add_node(ListNode head,ListNode node){
+        ListNode ptr=head;
+        while (ptr.next!=null){
+            ptr=ptr.next;
+        }
+        ptr.next=node;
+        return head;
+    }
+    public ListNode doubleIt(ListNode head) {
+        head=reverseList(head);
+        ListNode ptr=head;
+        int carry=0;
+        while(ptr!=null){
+            ptr.val=ptr.val*2+carry;
+            carry=0;
+            if(ptr.val>=10){
+                ptr.val-=10;
+                carry=1;
+                if(ptr.next==null){
+                    ptr.next=new ListNode(1);
+                }
+            }
+
+            ptr=ptr.next;
+
+        }
+        head=reverseList(head);
+
+        return head;
+    }
+
 
 }
 
