@@ -273,6 +273,59 @@ public class LinkedList {
 
         return head;
     }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if(l1==null || l2==null) return null;
+
+        if(size(l1)<size(l2)){
+            ListNode ptr=l2;
+            while (ptr!=null){
+                try {
+
+                    ptr.val=ptr.val+ l2.val;
+                    System.out.println("Ptr value in try"+ptr.val);
+                    l1=l1.next;
+                }catch (Exception e){
+
+                }
+                if(ptr.val>=10){
+                    ptr.val-=10;
+                    if(ptr.next!=null){
+                        ptr.next.val+=1;
+                    }else {
+                        ptr.next=new ListNode(1);
+                        return l2;
+                    }
+                }
+                System.out.println("Ptr value before next="+ptr.val);
+                ptr=ptr.next;
+
+            }
+            return l2;
+        }else {
+            ListNode ptr=l1;
+            while (ptr!=null){
+                try {
+                    ptr.val=ptr.val+ l2.val;
+                    l2=l2.next;
+                }catch (Exception e){
+
+                }
+                if(ptr.val>=10){
+                    ptr.val-=10;
+                    if(ptr.next!=null){
+                        ptr.next.val+=1;
+                    }else {
+                        ptr.next=new ListNode(1);
+                        return l1;
+                    }
+                }
+                ptr=ptr.next;
+
+            }
+            return l1;
+        }
+    }
+
 
 
 }

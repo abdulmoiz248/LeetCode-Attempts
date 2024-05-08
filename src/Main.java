@@ -43,12 +43,21 @@ public class Main {
        // System.out.println(solution.minWindow("ADOBECODEBANC","ABC"));
         LinkedList list=new LinkedList();
         LinkedList.ListNode l=null;
+        LinkedList.ListNode l1=null;
         l=  list.insert(9,l);
-        l=  list.insert(8,l);
-        l=  list.insert(1,l);
+        l=  list.insert(4,l);
+        l=  list.insert(2,l);
         list.print(l);
-        list.doubleIt(l);
-        System.out.println("After");
-        list.print(l);
+
+        l1=  list.insert(9,l1);
+        l1=  list.insert(4,l1);
+        l1=  list.insert(6,l1);
+        l1=  list.insert(5,l1);
+        list.print(l1);
+
+        LinkedList.ListNode l2=list.addTwoNumbers(l,l1);
+        list.print(l2);
+
     }
+
 }
