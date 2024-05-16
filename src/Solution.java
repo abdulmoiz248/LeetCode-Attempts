@@ -397,5 +397,114 @@ public class Solution {
         }
          return str;
     }
+    public long maximumHappinessSum(int[] happiness, int k) {
+        long sum=0;
+        for(int i=0;i<k;i++){
+            int no=findlargestindex(happiness);
+          if(happiness[no]-i>0)
+               sum=sum+(happiness[no]-i);
+            System.out.println("Happiness="+happiness[no]+" K="+i+" Sum="+sum);
+            happiness[no]=0;
+        }
+        return sum;
+    }
+    private int findlargestindex(int[] arr){
+        int large=0;
+        for(int i=1;i<arr.length;i++){
+            if(arr[large]<=arr[i]){
+                large=i;
+            }
+        }
+        return large;
+    }
 
+    public int[][] largestLocal(int[][] grid) {
+        int[][] arr=new int[grid.length-2][grid[0].length];
+         for(int i=0;i<grid.length-2;i++)
+             for(int j=0;j<grid[0].length-2;j++){
+                 arr[i][j]=max(grid,i,j);
+             }
+       return arr;
+    }
+    public int max(int[][] arr,int row,int col){
+      int breaker=0;
+      int max=arr[row][col];
+      int x=row;
+
+      while (true){
+          if(breaker==3) break;
+
+          Math.max(max,arr[x][col]);
+          row++;
+          if(breaker==2){
+              
+          }
+      }
+      return max;
+    }
+    public int matrixScore(int[][] grid) {
+       for (int row=0;row<grid.length;row++){
+           if(grid[row][0]==0) fliprow(grid,row);
+       }
+        for (int col=0;col<grid[0].length;col++){
+            int ones=0;
+            for (int row=0;row<grid.length;row++){
+                if(grid[row][col]==1) ones++;
+            }
+            if(ones*2 <=grid.length) flipcol(grid,col);
+        }
+       int max=0;
+        for (int i=0;i<grid.length;i++)
+            max=Math.max(max,conversion(grid,i));
+        return max;
+    }
+
+    private void fliprow(int[][] arr,int row){
+        for(int i=0;i<arr[0].length;i++){
+            if(arr[row][i]==0) arr[row][i]=1;
+            else arr[row][i]=0;
+        }
+    }
+    private void flipcol(int[][] arr,int col){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i][col]==0) arr[i][col]=1;
+            else arr[i][col]=0;
+        }
+    }
+    private int conversion(int[][] arr,int row){
+        int answer=0;
+        for(int i=0;i<arr[0].length;i++){
+            answer=answer*2+arr[row][i];
+        }
+return answer;
+    }
+
+    public int getMaximumGold(int[][] grid) {
+        if(grid.length==0 && grid[0].length==0) return 0;
+        if(grid.length==1 && grid[0].length==1) return grid[0][0];
+
+         int max=0;
+         for(int row=0;row<grid.length;row++){
+             for(int col=0;col<grid[0].length;col++){
+                 if(grid[row][col]!=0){
+                     max=Math.max(max,tracking(grid,row,col));
+                 }
+             }
+         }
+         return max;
+    }
+
+    private int tracking(int[][] grid,int row,int col){
+
+        if(row<0 || col<0 || grid[row][col]==0 || col>=grid[0].length || row>=grid.length)
+            return 0;
+        int temp=grid[row][col];
+        grid[row][col]=0;
+
+        int move=Math.max(Math.max(tracking(grid,row-1,col),tracking(grid,row+1,col)),Math.max(tracking(grid,row,col+1),tracking(grid,row,col-1)));
+
+        grid[row][col]=temp;
+        return temp+move;
+    }
+    
 }

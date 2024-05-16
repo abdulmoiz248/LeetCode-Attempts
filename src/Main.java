@@ -41,7 +41,7 @@ public class Main {
       //  System.out.println(solution.maxArea(new  int []{1,8,6,2,5,4,8,3,7}));
 
        // System.out.println(solution.minWindow("ADOBECODEBANC","ABC"));
-        LinkedList list=new LinkedList();
+       LinkedList list=new LinkedList();
         LinkedList.ListNode l=null;
         LinkedList.ListNode l1=null;
         l=  list.insert(9,l);
@@ -49,14 +49,9 @@ public class Main {
         l=  list.insert(2,l);
         list.print(l);
 
-        l1=  list.insert(9,l1);
-        l1=  list.insert(4,l1);
-        l1=  list.insert(6,l1);
-        l1=  list.insert(5,l1);
-        list.print(l1);
+        System.out.println(list.coversion_to_int(l));
 
-        LinkedList.ListNode l2=list.addTwoNumbers(l,l1);
-        list.print(l2);
+     //   System.out.println(solution.maximumHappinessSum(new int[]{2135218,73431904,92495076,77528042,82824634,3036629,28375907,65220365,40948869,58914871,57169530,89783499,19582915,19676695,11932465,21770144,49740276,22303751,80746555,97391584,95775653,43396943,47271136,43935930,59643137,64183008,8892641,39587569,85086654,5663585,82925096,24868817,95900395,48155864,74447380,7618448,63299623,91141186,33347112,81951555,52867615,92184410,7024265,85525916,29846922,59532692,47267934,6514603,1137830,97807470},41));
 
     }
 

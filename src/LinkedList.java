@@ -273,58 +273,21 @@ public class LinkedList {
 
         return head;
     }
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+   /* public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if(l1==null || l2==null) return null;
+        int ans=coversion_to_int(l1)+coversion_to_int(l2);
 
-        if(size(l1)<size(l2)){
-            ListNode ptr=l2;
-            while (ptr!=null){
-                try {
 
-                    ptr.val=ptr.val+ l2.val;
-                    System.out.println("Ptr value in try"+ptr.val);
-                    l1=l1.next;
-                }catch (Exception e){
-
-                }
-                if(ptr.val>=10){
-                    ptr.val-=10;
-                    if(ptr.next!=null){
-                        ptr.next.val+=1;
-                    }else {
-                        ptr.next=new ListNode(1);
-                        return l2;
-                    }
-                }
-                System.out.println("Ptr value before next="+ptr.val);
-                ptr=ptr.next;
-
-            }
-            return l2;
-        }else {
-            ListNode ptr=l1;
-            while (ptr!=null){
-                try {
-                    ptr.val=ptr.val+ l2.val;
-                    l2=l2.next;
-                }catch (Exception e){
-
-                }
-                if(ptr.val>=10){
-                    ptr.val-=10;
-                    if(ptr.next!=null){
-                        ptr.next.val+=1;
-                    }else {
-                        ptr.next=new ListNode(1);
-                        return l1;
-                    }
-                }
-                ptr=ptr.next;
-
-            }
-            return l1;
-        }
+    }*/
+    public int coversion_to_int(ListNode l){
+        if(l.next==null) return l.val;
+        System.out.println(l.val*10);
+        return l.val+coversion_to_int(l.next)*10;
     }
+    /*private int convert_to_node(int val){
+
+    }*/
+
 
 
 
