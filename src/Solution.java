@@ -506,5 +506,27 @@ return answer;
         grid[row][col]=temp;
         return temp+move;
     }
+  public String reverseVowels(String s) {
+        Stack stack=new Stack();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='a' || s.charAt(i)=='i' || s.charAt(i)=='e' || s.charAt(i)=='u' || s.charAt(i)=='o' || s.charAt(i)=='A' || s.charAt(i)=='I' || s.charAt(i)=='E' || s.charAt(i)=='U' || s.charAt(i)=='O'){
+                stack.push(s.charAt(i));
+            }
+        }
+        String newS=new String(); 
+        
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='a' || s.charAt(i)=='i' || s.charAt(i)=='e' || s.charAt(i)=='u' || s.charAt(i)=='o' || s.charAt(i)=='A' || s.charAt(i)=='I' || s.charAt(i)=='E' || s.charAt(i)=='U' || s.charAt(i)=='O'){   
+                newS+= (char) stack.pop();
+            }else
+            {
+              newS+=s.charAt(i);  
+            }
+            
+            }
+        
+        return newS;
+    }
+    
     
 }
