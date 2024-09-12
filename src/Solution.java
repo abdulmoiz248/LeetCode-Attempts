@@ -3,6 +3,24 @@ import java.util.Map;
 import java.util.*;
 
 public class Solution {
+      public int countConsistentStrings(String allowed, String[] words) {
+        HashSet<Character> set=new HashSet<>();
+        for(int i=0;i<allowed.length();i++){
+            set.add(allowed.charAt(i));
+        }
+        int total=0;
+        for(String str:words){
+          boolean valid=true;
+          for(int j=0;j<str.length();j++){
+            if(!set.contains(str.charAt(j))) {
+                valid=false;
+                break;}
+          }      
+          if(valid) total++;  
+        }
+        return total;
+    }
+    
     public boolean containsDuplicate(int[] nums) {
         for(int i=0;i<nums.length;i++){
             
