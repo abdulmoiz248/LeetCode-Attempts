@@ -3,6 +3,27 @@ import java.util.Map;
 import java.util.*;
 
 public class Solution {
+   public int maxScore(String s) {
+        int ones=0;
+        int ans=0;
+        int zero=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='1') ones++;
+
+        }
+
+//works like insertion sort
+        for(int i=0;i<s.length()-1;i++){
+            if(s.charAt(i)=='1') ones--;
+            else zero++;
+
+            ans=Math.max(ans,zero+ones);
+
+        }
+        return ans;
+    }
+      
+      
       public int countConsistentStrings(String allowed, String[] words) {
         HashSet<Character> set=new HashSet<>();
         for(int i=0;i<allowed.length();i++){
