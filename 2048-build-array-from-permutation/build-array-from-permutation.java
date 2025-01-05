@@ -1,8 +1,17 @@
 class Solution {
     public int[] buildArray(int[] nums) {
-        int arr[]=new int[nums.length];
-        for(int i=0;i<nums.length;i++)
-           arr[i]=nums[nums[i]];
-        return arr;   
+      int left=0;
+      int right=nums.length-1;
+      int ans[]=new int[right+1];
+
+while(left<=right){
+
+    ans[left]=nums[nums[left]] ;
+    ans[right]=nums[nums[right]];
+     
+    left++;
+    right--;
+}
+      return ans;
     }
 }
