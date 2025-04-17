@@ -3,6 +3,20 @@ import java.util.Map;
 import java.util.*;
 
 public class Solution {
+   
+     public int countPairs(int[] nums, int k) {
+        int count=0;
+        for(int i=0;i<nums.length-1;i++)
+         for(int j=i+1;j<nums.length;j++)
+         {
+            
+            if(nums[i]==nums[j] && (i*j)%k==0) {
+                System.out.println(i+" "+j);
+                count++;}
+         }
+        return count;
+
+    }
    public int countGoodTriplets(int[] arr, int a, int b, int c) {
         int count=0;
         for(int i=0;i<arr.length-2;i++)
